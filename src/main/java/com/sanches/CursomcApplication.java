@@ -75,7 +75,6 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		// CLIENTE
 		Cliente cli1 = new Cliente(null, "Maria SIlva", "maria@gmail.com", "46610991823", TipoCliente.PESSOA_FISICA);
-		Cliente cli2 = new Cliente(null, "Carlos Roberto", "carlos@gmail.com", "23563622789", TipoCliente.PESSOA_JURIDICA);
 		cli1.getTelefones().addAll(Arrays.asList("1190273848", "86752837"));
 		
 		// ENDERECO
@@ -93,7 +92,7 @@ public class CursomcApplication implements CommandLineRunner {
 		repositoryCategoria.saveAll(Arrays.asList(cat1, cat2));
 		repositoryProduto.saveAll(Arrays.asList(p1, p2, p3));
 	
-		repositoryCliente.saveAll(Arrays.asList(cli1, cli2));
+		repositoryCliente.save(cli1);
 		repositoryEndereco.saveAll(Arrays.asList(e1, e2));
 	}
 }
