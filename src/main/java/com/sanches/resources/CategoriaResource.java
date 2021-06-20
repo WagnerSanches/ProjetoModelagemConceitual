@@ -1,8 +1,6 @@
 package com.sanches.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +22,8 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> buscar(@PathVariable Integer id) {
-		Categoria cat = service.buscar(id);
+	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {
+		Categoria cat = service.find(id);
 		return ResponseEntity.ok().body(cat);
 	}
 	
@@ -41,6 +39,16 @@ public class CategoriaResource {
 		
 		return ResponseEntity
 				.created(uri)
+				.build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	private ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		
+		return ResponseEntity
+				.noContent()
 				.build();
 	}
 	
