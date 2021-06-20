@@ -13,6 +13,7 @@ import com.sanches.domain.Cidade;
 import com.sanches.domain.Cliente;
 import com.sanches.domain.Endereco;
 import com.sanches.domain.Estado;
+import com.sanches.domain.ItemPedido;
 import com.sanches.domain.Pagamento;
 import com.sanches.domain.PagamentoBoleto;
 import com.sanches.domain.PagamentoCartao;
@@ -25,6 +26,7 @@ import com.sanches.repositories.CidadeRepository;
 import com.sanches.repositories.ClienteRepository;
 import com.sanches.repositories.EnderecoRepository;
 import com.sanches.repositories.EstadoRepository;
+import com.sanches.repositories.ItemPedidoRepository;
 import com.sanches.repositories.PagamentoRepository;
 import com.sanches.repositories.PedidoRepository;
 import com.sanches.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository repositoryPagamento;
+	
+	@Autowired
+	private ItemPedidoRepository repositoryItemPedido;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -112,6 +117,18 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
+		// ITEM PEDIDO
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 00.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 00.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItems().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItems().addAll(Arrays.asList(ip3));
+		
+		p1.getItems().addAll(Arrays.asList(ip1));
+		p2.getItems().addAll(Arrays.asList(ip3));
+		p3.getItems().addAll(Arrays.asList(ip2));
+		
 		repositoryEstado.saveAll(Arrays.asList(est1, est2));
 		repositoryCidade.saveAll(Arrays.asList(c1, c2, c3));
 		
@@ -126,6 +143,8 @@ public class CursomcApplication implements CommandLineRunner {
 	
 		repositoryPedido.saveAll(Arrays.asList(ped1, ped2));
 		repositoryPagamento.saveAll(Arrays.asList(pagto1, pagto2));
-	
+		
+		
+		repositoryItemPedido.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 }
