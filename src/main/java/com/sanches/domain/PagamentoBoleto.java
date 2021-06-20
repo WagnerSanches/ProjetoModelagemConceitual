@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sanches.domain.enums.EstadoPagamento;
 
 @Entity
 public class PagamentoBoleto extends Pagamento {

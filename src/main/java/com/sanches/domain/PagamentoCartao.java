@@ -2,8 +2,6 @@ package com.sanches.domain;
 
 import javax.persistence.Entity;
 
-import com.sanches.domain.enums.EstadoPagamento;
-
 @Entity
 public class PagamentoCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
